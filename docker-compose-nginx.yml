@@ -1,0 +1,19 @@
+version: '3.7'
+services:
+  nginx:
+    build:
+     context: ./nginx
+     dockerfile: Dockerfile
+    image: ghcr.io/tiosetiaatih/nginx:latest
+    container_name: nginx-test
+    hostname: nginx
+    restart: always
+    privileged: true
+    network_mode: host
+    volumes:
+     - /etc/localtime:/etc/localtime
+     - /opt/test/nginx/conf/nginx.conf:/opt/nginx/conf/nginx.conf
+     - /opt/test/nginx/conf/vhosts:/opt/nginx/conf/vhosts
+     - /var/log/nginx:/var/log/nginx
+     - /home/cms:/home/cms
+    command: /opt/nginx/sbin/nginx
