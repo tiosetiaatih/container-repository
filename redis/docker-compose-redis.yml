@@ -1,0 +1,21 @@
+version: '3.7'
+services:
+  redis:
+    build:
+      context: ./redis
+      dockerfile: Dockerfile
+    image: ghcr.io/tiosetiaatih/redis:latest
+    container_name: redis-test
+    hostname: redis-test
+    network_mode: host
+    restart: always
+    privileged: true
+    volumes:
+     - /etc/localtime:/etc/localtime
+     - /opt/test/redis/redis.conf:/opt/redis/redis.conf
+     - /opt/test/redis/startup-script.sh:/startup-script.sh
+     - /data/redis/:/data/redis/
+     - /var/log/redis:/var/log/redis
+     - /home/cms/uwsgi:/home/cms/uwsgi
+     - /tmp:/tmp
+    entrypoint: /startup-script.sh

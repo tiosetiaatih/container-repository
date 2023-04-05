@@ -1,0 +1,23 @@
+FROM centos:latest
+LABEL tiset "tiosetiaatih@gmail.com"
+
+# Install Redis.
+RUN \
+  cd /tmp && \
+  yum -y install wget make gcc diffutils && \
+  wget https://download.redis.io/releases/redis-6.2.5.tar.gz && \
+  tar -xzvf redis-6.2.5.tar.gz && \
+  cd redis-6.2.5 && \
+  make && \
+  make install && \
+  mkdir -p /opt/redis && \
+  mkdir -p /data/redis && \
+  mkdir -p /var/log/redis && \
+  groupadd test -g 500; adduser -g test -u 500 test && \
+  chown -R test.test /data/redis && \
+  chown -R test.test /opt/redis && \
+  chown -R test.test /var/log/redis && \
+  rm -rf /tmp/redis-stable*
+
+# Define working directory.
+WORKDIR /opt

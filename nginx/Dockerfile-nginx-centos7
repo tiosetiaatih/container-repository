@@ -1,5 +1,5 @@
 FROM centos:7
-LABEL tiset "tiosetia@detik.com"
+LABEL tiset "tiosetiaatih@gmail.com"
 
 ENV NGINX_VERSION 1.22.0
 ENV OPENSSL_VERSION 1.1.1q
