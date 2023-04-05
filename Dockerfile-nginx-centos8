@@ -1,8 +1,8 @@
 FROM centos:latest
 LABEL tiset "tiosetia@detik.com"
 
-ENV NGINX_VERSION 1.20.1
-ENV OPENSSL_VERSION 1.1.1l
+ENV NGINX_VERSION 1.22.0
+ENV OPENSSL_VERSION 1.1.1q
 
 RUN CONFIG="\
     --prefix=/opt/nginx \
