@@ -11,7 +11,7 @@ services:
     volumes:
       - ./crontab.txt:/etc/crontab
 
-#atau bisa juga menggunakan config berikut
+#atau bisa juga menggunakan config berikut :
   docker-cron-2:
     container_name: ubuntu-cron
     build:
