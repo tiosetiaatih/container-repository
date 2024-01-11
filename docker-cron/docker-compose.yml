@@ -1,0 +1,24 @@
+version: '3'
+
+services:
+  docker-cron:
+    container_name: docker-cron
+    image: ubuntu.dockerfile
+    network_mode: host
+    privileged: true
+    command: sh -c "crontab /etc/crontab && cron -f -L /dev/stdout -l 0"
+    restart: always
+    volumes:
+      - ./crontab.txt:/etc/crontab
+
+#atau bisa juga menggunakan config berikut
+  docker-cron-2:
+    container_name: ubuntu-cron
+    build:
+      context: .
+      dockerfile: ubuntu.dockerfile
+    init: true
+    environment:
+      - CUSTOM_ENV_VAR=foobar
+    volumes:
+      - ./ubuntu-crontab-example.txt:/etc/crontab
