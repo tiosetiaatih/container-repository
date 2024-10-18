@@ -1,0 +1,64 @@
+services:
+  redis-tracker-1:
+    #image: redis:6.2
+    image: redis
+    container_name: redis-tracker-1
+    restart: always
+    privileged: true
+    ulimits:
+      nofile:
+        soft: "65536"
+        hard: "65536"
+    command: sh -c "echo never > /sys/kernel/mm/transparent_hugepage/enabled && echo never > /sys/kernel/mm/transparent_hugepage/defrag && redis-server /usr/local/etc/redis/redis.conf"
+    volumes:
+      - ./redis-tracker-01.conf:/usr/local/etc/redis/redis.conf
+      - /var/log/redis:/var/log/redis
+    network_mode: host
+
+  redis-tracker-2:
+    #image: redis:6.2
+    image: redis
+    container_name: redis-tracker-2
+    restart: always
+    privileged: true
+    ulimits:
+      nofile:
+        soft: "65536"
+        hard: "65536"
+    command: sh -c "echo never > /sys/kernel/mm/transparent_hugepage/enabled && echo never > /sys/kernel/mm/transparent_hugepage/defrag && redis-server /usr/local/etc/redis/redis.conf"
+    volumes:
+      - ./redis-tracker-02.conf:/usr/local/etc/redis/redis.conf
+      - /var/log/redis:/var/log/redis
+    network_mode: host
+
+  redis-tracker-3:
+    #image: redis:6.2
+    image: redis
+    container_name: redis-tracker-3
+    restart: always
+    privileged: true
+    ulimits:
+      nofile:
+        soft: "65536"
+        hard: "65536"
+    command: sh -c "echo never > /sys/kernel/mm/transparent_hugepage/enabled && echo never > /sys/kernel/mm/transparent_hugepage/defrag && redis-server /usr/local/etc/redis/redis.conf"
+    volumes:
+      - ./redis-tracker-03.conf:/usr/local/etc/redis/redis.conf
+      - /var/log/redis:/var/log/redis
+    network_mode: host
+
+  sentinel-tracker:
+    #image: redis:6.2
+    image: redis
+    container_name: sentinel-tracker
+    restart: always
+    privileged: true
+    ulimits:
+      nofile:
+        soft: "65536"
+        hard: "65536"
+    command: sh -c "echo never > /sys/kernel/mm/transparent_hugepage/enabled && echo never > /sys/kernel/mm/transparent_hugepage/defrag && redis-sentinel /usr/local/etc/redis/sentinel.conf"
+    volumes:
+      - ./sentinel.conf:/usr/local/etc/redis/sentinel.conf
+      - /var/log/redis:/var/log/redis
+    network_mode: host
