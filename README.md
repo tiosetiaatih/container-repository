@@ -7,5 +7,6 @@ Operating System | Version | Information
 :-: | :-: | :-: 
 Centos | 7.x | Support 
 Centos | 8.x | Support
+Rocky | 9.x | Support
 
 Note: Disesuaikan dengan image yang akan digunakan
